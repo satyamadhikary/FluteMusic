@@ -1,0 +1,272 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* font-family: 'Cormorant Garamond', serif;
+    font-family: 'Dancing Script', cursive;
+    font-family: 'IBM Plex Serif', serif;
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Merriweather', serif; 
+    font-family: 'Roboto', sans-serif;*/
+}
+
+html{
+  overflow-x: hidden;
+}
+
+body{
+    height: 100% !important;
+    background-color: #0e0e0e;
+    width: 100vw !important;
+    font-family: 'Roboto', sans-serif;
+}
+
+main{
+    overflow: hidden;
+    padding:5px;
+}
+
+section{
+    overflow: hidden;
+    height: 100%;
+}
+
+
+body {
+  --sb-track-color: #cdcdcd;
+  --sb-thumb-color: #ffffff;
+  --sb-size: 5px;
+}
+
+body::-webkit-scrollbar {
+  width: var(--sb-size)
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 0px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 0  px;
+  
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  body {
+    scrollbar-color: var(--sb-thumb-color)
+                     var(--sb-track-color);
+  }
+}
+
+::-webkit-scrollbar {
+  width: 5px; /* Width of the entire scrollbar */
+  height: 5px; /* Height of the entire scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Background of the scrollbar track */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888; /* Background color of the scrollbar thumb */
+  border-radius: 10px; /* Roundness of the scrollbar thumb */
+  border: 2px solid #f1f1f1; /* Space around the scrollbar thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Background color of the scrollbar thumb when hovered */
+}
+
+/* For Firefox */
+* {
+  scrollbar-width:none; /* Set the width to be thin */
+  scrollbar-color: #888 #f1f1f1; /* Set thumb and track colors */
+}
+
+body {
+  -ms-overflow-style: -ms-autohiding-scrollbar; /* Auto-hiding scrollbars */
+}
+
+
+
+/* SideNav*/
+
+
+.sidenav{
+  position: fixed;
+  height: 100vh;
+  width: 16vw;
+  border-radius: 8px;
+  background-color: #242424ed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 9999;
+}
+.sidenav h1{
+    color: white;
+    font-family: 'Dancing Script', cursive;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+}
+.sidenav a{
+  padding: 10px;
+  color: white;
+  text-decoration: none;
+}
+.sidenav a:hover{
+  color: #b3b3b3;
+}
+
+
+/*MainNAv*/
+
+.nav-bar{
+  background: rgba( 255, 255, 255, 0.2 );
+  backdrop-filter: blur( 9px );
+  -webkit-backdrop-filter: blur( 9px );
+  height: 5vh;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.lock{
+  position: sticky;
+  top: 0;
+  width: -moz-available;
+  z-index: 999;
+  width: -webkit-fill-available;
+}
+
+.nav-bar h1{
+  display: none;
+}
+
+.nav-bar a{
+  padding: 10px;
+  color: white;
+  text-decoration: none;
+}
+.nav-bar   a:hover{
+  color: #b3b3b3;
+}
+
+/* Main*/
+
+.section-label{
+  font-size: 25px;
+  font-weight: 600;
+  font-family: 'Roboto', sans-serif;
+  margin: 10px 0px 10px 20px;
+  color: #fff;
+  cursor: pointer;
+  width: max-content;
+}
+
+.wrapper{
+  height: 100vh;
+  width: -webkit-fill-available;
+  overflow-y: scroll;
+  position: relative;
+  top: .5%;
+  bottom: 0;
+  border-radius: 13px 13px 13px 13px / 25px 25px 25px 25px;
+}
+
+/*-----------------CAROUSEL_CSS_START------------------*/
+
+.img-container{
+  height: 700px;
+  display: flex;
+}
+
+.img-container img{
+  position: relative;
+  border-radius: 10px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.img-container h2{
+  position: absolute;
+    font-size: 95px;
+    font-family: 'Merriweather', serif;  
+    height: inherit;
+    width:-webkit-fill-available;
+    margin: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items:end;
+    color:#f1f1f1;
+    padding-left:40px ;
+    padding-bottom: 50px; 
+    transition: .3s ease-out;
+}
+
+ .img-container audio{
+    position: absolute;
+    height: inherit;
+    width:-webkit-fill-available;
+    display: none;
+    justify-content: flex-start;
+    align-items:end;  
+    padding:0 20px 0 10px;
+    transition: .5s ease-out;
+}
+
+.audio-visible:hover .img-container audio{
+  display: flex;
+  transition: 1s all ease-in-out;
+}
+.audio-visible:hover .img-container h2{
+  padding-bottom: 60px;
+  transition: .3s all ease-in-out;
+  font-size: 100px;
+}
+
+audio::-webkit-media-controls {
+  filter: invert(1); /*Color of Audio Controls*/
+}
+
+::-webkit-media-controls-enclosure { /*audio background*/
+  background:none;
+}
+audio::-webkit-media-controls-current-time-display {
+  font-weight: 700;
+  font-family:'Roboto', sans-serif;
+}
+audio::-webkit-media-controls-time-remaining-display {
+  font-weight: 700;
+  font-family:'Roboto', sans-serif;
+}
+
+audio::-webkit-media-controls-play-button:hover {
+  background-color:white;
+  color: white;
+  border-radius: 50%;
+  filter:none;
+}
+audio::-webkit-media-controls-volume-control-container {
+  display: none;
+  opacity: 0;
+}
+
+
+.carousel-control-next, .carousel-control-prev {
+  width: 6%;
+  height: 50%;
+  align-items: end;
+}
+
+
+/*-----------------CAROUSEL_CSS_END------------------*/
+
+
+.none{
+  background-color: #000;
+  height: 1000vh;
+}
