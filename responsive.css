@@ -67,4 +67,7 @@
     .audio-visible .img-container audio {
         display: block; /* Hide audio by default */
     }
+     .img-container h2{
+        font-size: 60px;
+    }
 }
