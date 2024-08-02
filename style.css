@@ -218,38 +218,43 @@ body {
     transition: .5s ease-out;
 }
 
-.audio-visible:hover .img-container audio{
-  display: flex;
+.audio-visible .img-container audio {
+  display: none; /* Hide audio by default */
+}
+
+.audio-visible:hover .img-container audio {
+  display: flex; /* Show audio on hover */
   transition: 1s all ease-in-out;
 }
-.audio-visible:hover .img-container h2{
+
+.audio-visible:hover .img-container h2 {
   padding-bottom: 60px;
-  transition: .3s all ease-in-out;
+  transition: 0.3s all ease-in-out;
   font-size: 100px;
 }
 
+/* iOS specific styles */
 audio::-webkit-media-controls {
-  filter: invert(1); /*Color of Audio Controls*/
+  filter: invert(1); /* Color of Audio Controls */
 }
 
-::-webkit-media-controls-enclosure { /*audio background*/
-  background:none;
+::-webkit-media-controls-enclosure {
+  background: none; /* Audio controls background */
 }
-audio::-webkit-media-controls-current-time-display {
-  font-weight: 700;
-  font-family:'Roboto', sans-serif;
-}
+
+audio::-webkit-media-controls-current-time-display,
 audio::-webkit-media-controls-time-remaining-display {
   font-weight: 700;
-  font-family:'Roboto', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 audio::-webkit-media-controls-play-button:hover {
-  background-color:white;
+  background-color: white;
   color: white;
   border-radius: 50%;
-  filter:none;
+  filter: none;
 }
+
 audio::-webkit-media-controls-volume-control-container {
   display: none;
   opacity: 0;
