@@ -70,4 +70,7 @@
      .img-container h2{
         font-size: 60px;
     }
+     .audio-visible:hover .img-container h2 {
+/*          padding-bottom: 60px; */
+    }
 }
