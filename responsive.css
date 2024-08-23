@@ -59,6 +59,11 @@
     }
 }
 
+@media only screen and (max-width:767px){
+    .wrapper {
+        top: 0%;
+    }
+
 @media screen and (max-width: 576px){
     .item .img-container audio {
         opacity:1; /* Hide audio by default */
