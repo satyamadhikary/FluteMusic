@@ -17,3 +17,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //--------------------------------------------------------------------------------------
 
+$(document).ready(function(){
+    $(".owl-carousel").owlCarousel();
+  });
+
+
+var owl = $('.owl-carousel');
+owl.owlCarousel({
+    loop: true,
+    items: 1,
+    dots: false,
+
+});
+
+owl.on('mousewheel', function (e) {
+    if (e.originalEvent.deltaY < 0) {
+        owl.trigger('prev.owl.carousel');
+    } else {
+        owl.trigger('next.owl.carousel');
+    }
+    e.preventDefault();
+});
