@@ -211,23 +211,20 @@ body {
     position: absolute;
     height: inherit;
     width:-webkit-fill-available;
-    display: none;
+    opacity: 0;
     justify-content: flex-start;
     align-items:end;  
     padding:0 20px 0 10px;
-    transition: .5s ease-out;
+    transition: .3s ease-out;
 }
 
-.audio-visible .img-container audio {
-  display: none; /* Hide audio by default */
+.item:hover .img-container audio {
+  /* Show audio on hover */
+  transition: .3s all ease-in-out;
+  opacity: 1;
 }
 
-.audio-visible:hover .img-container audio {
-  display: flex; /* Show audio on hover */
-  transition: 1s all ease-in-out;
-}
-
-.audio-visible:hover .img-container h2 {
+.item:hover .img-container h2 {
   padding-bottom: 60px;
   transition: 0.3s all ease-in-out;
   font-size: 100px;
