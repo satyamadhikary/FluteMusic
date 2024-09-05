@@ -17,15 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //--------------------------------------------------------------------------------------
 
-
-//iphone compatablility
-import {normalizeURL} from 'ionic-angular';
-
-MediaSource = document.createElement("audio");
-MediaSource.src = normalizeURL(cordova.file.dataDirectory + file.fullPath);
-
-//----------------------------------------------
-
 $(document).ready(function(){
     $(".owl-carousel").owlCarousel();
   });
