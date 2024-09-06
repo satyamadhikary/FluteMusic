@@ -206,7 +206,7 @@ body {
     padding-bottom: 50px; 
     transition: .3s ease-out;
 }
-
+/* 
  .img-container audio{
     position: absolute;
     height: inherit;
@@ -219,7 +219,7 @@ body {
 }
 
 .item:hover .img-container audio {
-  /* Show audio on hover */
+  /* Show audio on hover 
   transition: .3s all ease-in-out;
   opacity: 1;
 }
@@ -230,13 +230,13 @@ body {
   font-size: 100px;
 }
 
-/* iOS specific styles */
+/* iOS specific styles 
 audio::-webkit-media-controls {
-  filter: invert(1); /* Color of Audio Controls */
+  filter: invert(1); /* Color of Audio Controls 
 }
 
 ::-webkit-media-controls-enclosure {
-  background: none; /* Audio controls background */
+  background: none; /* Audio controls background 
 }
 
 audio::-webkit-media-controls-current-time-display,
@@ -262,7 +262,7 @@ audio::-webkit-media-controls-volume-control-container {
   width: 6%;
   height: 50%;
   align-items: end;
-}
+} */
 
 
 /*-----------------CAROUSEL_CSS_END------------------*/
@@ -271,4 +271,94 @@ audio::-webkit-media-controls-volume-control-container {
 .none{
   background-color: #000;
   height: 1000vh;
+}
+
+
+
+.controls {
+  position: absolute;
+  bottom: 25px;
+  width: -webkit-fill-available;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 30px;
+}
+.seek-bar {
+  width: 100%;
+  height: 4px;
+  outline: none;
+}
+/* Play and Pause button styling */
+.play-pause {
+  font-size: 20px;
+  color: black;
+  padding: 10px;
+  border-radius: 50%;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  width: 45px;
+  margin-right: 20px;
+}
+.play-pause.play::before {
+  content: '\f04b'; /* Font Awesome play icon */
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+}
+.play-pause.pause::before {
+  content: '\f04c'; /* Font Awesome pause icon */
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+}   
+/* Container to align the seek bar properly */
+.seek-bar-container {
+  width: 100%;
+  margin: 10px 0;
+}
+
+/* Styling the range input itself */
+.seek-bar {
+  -webkit-appearance: none; /* Remove default styling in WebKit-based browsers */
+  width: 100%; /* Full width */
+  height: 4px; /* Height of the track */
+  background: #ddd; /* Background color of the track */
+  border-radius: 5px; /* Rounded corners */
+  outline: none; /* Remove outline */
+}
+
+/* Style the thumb (the draggable part) */
+.seek-bar::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px; /* Width of the thumb */
+  height: 14px; /* Height of the thumb */
+  background: #fff; /* Color of the thumb */
+  border-radius: 50%; /* Rounded thumb */
+  cursor: pointer; /* Cursor changes to pointer on hover */
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5); /* Optional shadow for the thumb */
+  transition: 1.5s all ease-in-out;
+}
+
+.seek-bar::-moz-range-thumb {
+  width: 8px;
+  height: 8px;
+  background: black;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+}
+
+.seek-bar::-ms-thumb {
+  width: 8px;
+  height: 8px;
+  background: black;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Hover effect for the thumb */
+.seek-bar:hover {
+  background: white; /* Lighten the track on hover */
 }
