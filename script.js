@@ -78,7 +78,7 @@ document.querySelectorAll('.item').forEach(item => {
           <img class="img-fluid play-img change" src="${itemData.imageSrc}" alt="${itemData.title}">
           <h2>${itemData.title}</h2>
           <audio id="${itemData.className}" src="${itemData.audioSrc}"></audio>
-          <div class="controls">
+          <div class="controls">  
             <button class="play-pause play"></button>
             <button class="stop" style="display: none;"></button>
             <input type="range" class="seek-bar" value="0" max="100" step="0.001">
@@ -91,8 +91,6 @@ document.querySelectorAll('.item').forEach(item => {
     const audio = item.querySelector('audio');
     const playPauseBtn = item.querySelector('.play-pause');
     const seekBar = item.querySelector('.seek-bar');
-    const startTimeElement = document.getElementById('start-time');
-const endTimeElement = document.getElementById('end-time');
 
     playPauseBtn.addEventListener('click', () => {
       if (audio.paused) {
