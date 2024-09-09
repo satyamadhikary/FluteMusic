@@ -34,14 +34,14 @@
         margin: 0;
         font-family: 'Dancing Script', cursive;
     }
-    .img-container audio{ 
-        padding:0 10px;
-    }
     .img-container h2{
         font-size: 50px;
     }
     .item:hover .img-container h2{
         font-size: 60px;
+    }
+    .controls{
+        opacity: 1;
     }
 }
 
@@ -65,14 +65,15 @@
     }
 
 @media screen and (max-width: 576px){
-    .item .img-container audio {
-        opacity:1; /* Hide audio by default */
-    }
      .img-container h2{
         font-size: 60px;
     }
      .item:hover .img-container h2 {
         padding-bottom: 50px; 
+    }
+    .controls{
+        padding: 0 20px;
+        opacity: 1;
     }
 }
 }

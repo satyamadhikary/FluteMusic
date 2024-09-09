@@ -206,73 +206,24 @@ body {
     padding-bottom: 50px; 
     transition: .3s ease-out;
 }
-/* 
- .img-container audio{
-    position: absolute;
-    height: inherit;
-    width:-webkit-fill-available;
-    opacity: 0;
-    justify-content: flex-start;
-    align-items:end;  
-    padding:0 20px 0 10px;
-    transition: .3s ease-out;
-}
-
-.item:hover .img-container audio {
-  /* Show audio on hover 
-  transition: .3s all ease-in-out;
-  opacity: 1;
-}
-
 .item:hover .img-container h2 {
   padding-bottom: 60px;
   transition: 0.3s all ease-in-out;
   font-size: 100px;
 }
 
-/* iOS specific styles 
-audio::-webkit-media-controls {
-  filter: invert(1); /* Color of Audio Controls 
-}
-
-::-webkit-media-controls-enclosure {
-  background: none; /* Audio controls background 
-}
-
-audio::-webkit-media-controls-current-time-display,
-audio::-webkit-media-controls-time-remaining-display {
-  font-weight: 700;
-  font-family: 'Roboto', sans-serif;
-}
-
-audio::-webkit-media-controls-play-button:hover {
-  background-color: white;
-  color: white;
-  border-radius: 50%;
-  filter: none;
-}
-
-audio::-webkit-media-controls-volume-control-container {
-  display: none;
-  opacity: 0;
-}
-
-
-.carousel-control-next, .carousel-control-prev {
-  width: 6%;
-  height: 50%;
-  align-items: end;
-} */
-
 
 /*-----------------CAROUSEL_CSS_END------------------*/
-
 
 .none{
   background-color: #000;
   height: 1000vh;
 }
 
+.controls:hover .seek-bar::-webkit-slider-thumb {
+  display: block;
+  transition: 1.5s all ease-in-out;
+}
 
 
 .controls {
@@ -283,33 +234,50 @@ audio::-webkit-media-controls-volume-control-container {
   justify-content: space-around;
   align-items: center;
   padding: 0 30px;
+  opacity: 0;
+}
+.item:hover .controls {
+  /* Show audio on hover*/ 
+  transition: .3s all ease-in-out;
+  opacity: 1;
 }
 .seek-bar {
   width: 100%;
-  height: 4px;
+  height: 3px;
   outline: none;
+  margin-right: 15px;
 }
 /* Play and Pause button styling */
 .play-pause {
   font-size: 20px;
-  color: black;
+  color: white;
   padding: 10px;
   border-radius: 50%;
-  background-color: white;
+  background-color: transparent;
   border: none;
   cursor: pointer;
-  width: 45px;
-  margin-right: 20px;
+  width: 35px;
+  height: 35px;
+  margin-right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.play-pause:hover{
+  background-color: black;
+  
 }
 .play-pause.play::before {
-  content: '\f04b'; /* Font Awesome play icon */
-  font-family: "Font Awesome 5 Free";
-  font-weight: 900;
+  content: '\F4F4'; /* Font Awesome play icon */
+  font-family: "bootstrap-icons";
+  font-weight: 600;
+  width: 35px;
 }
 .play-pause.pause::before {
-  content: '\f04c'; /* Font Awesome pause icon */
-  font-family: "Font Awesome 5 Free";
+  content: '\F4C4'; /* Font Awesome pause icon */
+  font-family: "bootstrap-icons";
   font-weight: 900;
+  width: 35px;
 }   
 /* Container to align the seek bar properly */
 .seek-bar-container {
@@ -322,7 +290,7 @@ audio::-webkit-media-controls-volume-control-container {
   -webkit-appearance: none; /* Remove default styling in WebKit-based browsers */
   width: 100%; /* Full width */
   height: 4px; /* Height of the track */
-  background: #ddd; /* Background color of the track */
+  background: #8a8a8a; /* Background color of the track */
   border-radius: 5px; /* Rounded corners */
   outline: none; /* Remove outline */
 }
@@ -331,13 +299,14 @@ audio::-webkit-media-controls-volume-control-container {
 .seek-bar::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 14px; /* Width of the thumb */
-  height: 14px; /* Height of the thumb */
+  display: none;
+  width: 11px; /* Width of the thumb */
+  height: 11px; /* Height of the thumb */
   background: #fff; /* Color of the thumb */
   border-radius: 50%; /* Rounded thumb */
   cursor: pointer; /* Cursor changes to pointer on hover */
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.5); /* Optional shadow for the thumb */
-  transition: 1.5s all ease-in-out;
+  
 }
 
 .seek-bar::-moz-range-thumb {

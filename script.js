@@ -81,7 +81,7 @@ document.querySelectorAll('.item').forEach(item => {
           <div class="controls">
             <button class="play-pause play"></button>
             <button class="stop" style="display: none;"></button>
-            <input type="range" class="seek-bar" value="0" max="100">
+            <input type="range" class="seek-bar" value="0" max="100" step="0.001">
           </div>
         </div>
       </div>
@@ -91,6 +91,8 @@ document.querySelectorAll('.item').forEach(item => {
     const audio = item.querySelector('audio');
     const playPauseBtn = item.querySelector('.play-pause');
     const seekBar = item.querySelector('.seek-bar');
+    const startTimeElement = document.getElementById('start-time');
+const endTimeElement = document.getElementById('end-time');
 
     playPauseBtn.addEventListener('click', () => {
       if (audio.paused) {
@@ -104,37 +106,22 @@ document.querySelectorAll('.item').forEach(item => {
       }
     });
 
-    audio.addEventListener('timeupdate', () => {
-      seekBar.value = (audio.currentTime / audio.duration) * 100;
-    });
-
-    seekBar.addEventListener('input', () => {
-      audio.currentTime = (seekBar.value / 100) * audio.duration;
-    });
-  }
+    // Update seekBar value and background color as audio plays
+audio.addEventListener('timeupdate', () => {
+  const percentage = (audio.currentTime / audio.duration) * 100;
+  seekBar.value = percentage;
+  updateSeekBarBackground(percentage);
 });
 
-// const audio = document.getElementById('audio');
-// const playPauseBtn = document.getElementById('play-pause');
-// const stopBtn = document.getElementById('stop');
-// const seekBar = document.getElementById('seek-bar');
+// Update audio currentTime when seekBar is adjusted
+seekBar.addEventListener('input', () => {
+  audio.currentTime = (seekBar.value / 100) * audio.duration;
+  updateSeekBarBackground(seekBar.value);
+});
 
-// playPauseBtn.addEventListener('click', () => {
-//     if (audio.paused) {
-//         audio.play();
-//         playPauseBtn.classList.remove('play');
-//         playPauseBtn.classList.add('pause');
-//     } else {    
-//         audio.pause();
-//         playPauseBtn.classList.remove('pause');
-//         playPauseBtn.classList.add('play');
-//     }
-// });
-
-// audio.addEventListener('timeupdate', () => {
-//     seekBar.value = (audio.currentTime / audio.duration) * 100;
-// });
-
-// seekBar.addEventListener('input', () => {
-//     audio.currentTime = (seekBar.value / 100) * audio.duration;
-// });
+    // Function to update the background of the seekBar
+function updateSeekBarBackground(percentage) {
+  seekBar.style.background = `linear-gradient(to right, #fff ${percentage}%, #8a8a8a ${percentage}%)`;
+}
+  }
+});
