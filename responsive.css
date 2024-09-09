@@ -76,4 +76,9 @@
         opacity: 1;
     }
 }
+@media screen and (max-width: 320px){
+    .controls {
+        padding-left: 10px;
+      }
+}
 }
