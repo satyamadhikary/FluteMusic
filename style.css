@@ -289,7 +289,7 @@ body {
 .seek-bar {
   -webkit-appearance: none; /* Remove default styling in WebKit-based browsers */
   width: 100%; /* Full width */
-  height: 4px; /* Height of the track */
+  height: 3px; /* Height of the track */
   background: #8a8a8a; /* Background color of the track */
   border-radius: 5px; /* Rounded corners */
   outline: none; /* Remove outline */
