@@ -1,72 +1,3 @@
-//Current audio stops playing when different audio is played
-
-document.addEventListener('DOMContentLoaded', () => {
-  const audios = document.querySelectorAll('audio');
-
-  audios.forEach(audio => {
-      audio.addEventListener('play', () => {
-          audios.forEach(otherAudio => {
-              if (otherAudio !== audio) {
-                  otherAudio.pause();
-                  otherAudio.currentTime = 0; // Optionally reset to start
-              }
-          });
-      });
-  });
-});
-
-//--------------------------------------------------------------------------------------
-
-$(document).ready(function(){
-    $(".owl-carousel").owlCarousel();
-  });
-
-
-var owl = $('.owl-carousel');
-owl.owlCarousel({
-    loop: true,
-    items: 1,
-    dots: false,
-
-});
-
-owl.on('mousewheel', function (e) {
-    if (e.originalEvent.deltaY < 0) {
-        owl.trigger('prev.owl.carousel');
-    } else {
-        owl.trigger('next.owl.carousel');
-    }
-    e.preventDefault();
-});
-
-
-const items = [
-  {
-    className: 'item1',
-    imageSrc: 'images/EeeHawa.jpeg',
-    audioSrc: 'https://firebasestorage.googleapis.com/v0/b/storage-bucket-575e1.appspot.com/o/music%2Fin-y2mate.com%20-%20E%20Hawa%20%20Meghdol%20X%20Hawa%20Film%20%20Aluminium%20Er%20Dana.mp3?alt=media&token=3724b578-ea7e-45c9-8ada-9dd5db28fca9',
-    title: 'E Hawa'
-  },
-  {
-    className: 'item2',
-    imageSrc: 'images/Ghorgari.png',
-    audioSrc: 'https://firebasestorage.googleapis.com/v0/b/storage-bucket-575e1.appspot.com/o/music%2Fin-y2mate.com%20-%20GhorGari%20%E0%A6%98%E0%A6%B0%E0%A6%97%E0%A6%A1%20%20Album%20Train%20Poka%20%20HIGHWAY.mp3?alt=media&token=5c83592f-9ec2-48ed-b44a-3865a15ae03a',
-    title: 'GhorGari'
-  },
-  {
-    className: 'item3',
-    imageSrc: 'images/Obosthan.jpeg',
-    audioSrc: 'https://firebasestorage.googleapis.com/v0/b/storage-bucket-575e1.appspot.com/o/music%2FObosthan.mp3?alt=media&token=9f0c0914-2ff4-40f5-8545-f23df037532b',
-    title: 'Obosthan'
-  },
-  {
-    className: 'item4',
-    imageSrc: 'images/sakkhi.jpg',
-    audioSrc: 'https://firebasestorage.googleapis.com/v0/b/storage-bucket-575e1.appspot.com/o/music%2FSakkhi.mp3?alt=media&token=c8365f21-07f1-4021-900b-96cf1997d4e2',
-    title: 'Sakkhi'
-  }
-];
-
 document.querySelectorAll('.item').forEach(item => {
   const className = item.getAttribute('data-info');
   const itemData = items.find(i => i.className === className);
@@ -77,11 +8,18 @@ document.querySelectorAll('.item').forEach(item => {
         <div class="img-container">
           <img class="img-fluid play-img change" src="${itemData.imageSrc}" alt="${itemData.title}">
           <h2>${itemData.title}</h2>
-          <audio id="${itemData.className}" src="${itemData.audioSrc}"></audio>
+          <audio id="audio-element-${itemData.className}" src="${itemData.audioSrc}"></audio>
           <div class="controls">  
             <button class="play-pause play"></button>
-            <button class="stop" style="display: none;"></button>
             <input type="range" class="seek-bar" value="0" max="100" step="0.001">
+            <button class="qr-icon"></button>
+          </div>
+          <div class="qr-bg hidden">
+            <button class="cross-icon"></button>
+            <button class="qrtoggle-icon"></button>
+            <div class="qr-code">
+              <img id="qr-code-${itemData.className}" src="/images/qrimg.png" style="height:200px; width:200px; border-radius:0px;" alt="QR Code">
+            </div>
           </div>
         </div>
       </div>
@@ -91,35 +29,207 @@ document.querySelectorAll('.item').forEach(item => {
     const audio = item.querySelector('audio');
     const playPauseBtn = item.querySelector('.play-pause');
     const seekBar = item.querySelector('.seek-bar');
+    const qrCodeImg = item.querySelector('.qr-code img');
 
-    playPauseBtn.addEventListener('click', () => {
+    // Function to toggle play/pause
+    const togglePlayPause = () => {
+      if (currentAudio && currentAudio !== audio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+        currentPlayPauseBtn.classList.remove('pause');
+        currentPlayPauseBtn.classList.add('play');
+      }
+
       if (audio.paused) {
         audio.play();
         playPauseBtn.classList.remove('play');
         playPauseBtn.classList.add('pause');
+        startQRCodeUpdate();
+        currentAudio = audio;
+        currentPlayPauseBtn = playPauseBtn;
       } else {
         audio.pause();
         playPauseBtn.classList.remove('pause');
         playPauseBtn.classList.add('play');
+        stopQRCodeUpdate();
+        currentAudio = null;
+        currentPlayPauseBtn = null;
       }
+    };
+
+    // Handle double-clicks on pad-content
+    let clickCount = 0;
+    let clickTimer;
+
+    const handleDoubleClick = () => {
+      clickCount++;
+      clearTimeout(clickTimer);
+
+      clickTimer = setTimeout(() => {
+        clickCount = 0;
+      }, 300); // 300ms for double-click detection
+
+      if (clickCount === 2) {
+        togglePlayPause(); // Trigger the play/pause function
+        clickCount = 0; // Reset click count
+      }
+    };
+
+    // Attach double-click handler to pad-content
+    const padContent = item.querySelector('.pad-content');
+    padContent.addEventListener('click', handleDoubleClick);
+
+    // Play/Pause button event listener
+    playPauseBtn.addEventListener('click', togglePlayPause);
+
+    // Reset the button and audio when it ends
+    audio.addEventListener('ended', () => {
+      playPauseBtn.classList.remove('pause');
+      playPauseBtn.classList.add('play');
+      currentAudio = null;
+      currentPlayPauseBtn = null;
+      stopQRCodeUpdate();
     });
 
     // Update seekBar value and background color as audio plays
-audio.addEventListener('timeupdate', () => {
-  const percentage = (audio.currentTime / audio.duration) * 100;
-  seekBar.value = percentage;
-  updateSeekBarBackground(percentage);
-});
+    audio.addEventListener('timeupdate', () => {
+      const percentage = (audio.currentTime / audio.duration) * 100;
+      seekBar.value = percentage;
+      updateSeekBarBackground(percentage);
+    });
 
-// Update audio currentTime when seekBar is adjusted
-seekBar.addEventListener('input', () => {
-  audio.currentTime = (seekBar.value / 100) * audio.duration;
-  updateSeekBarBackground(seekBar.value);
-});
+    // Update audio currentTime when seekBar is adjusted
+    seekBar.addEventListener('input', () => {
+      audio.currentTime = (seekBar.value / 100) * audio.duration;
+      updateSeekBarBackground(seekBar.value);
+    });
 
     // Function to update the background of the seekBar
-function updateSeekBarBackground(percentage) {
-  seekBar.style.background = `linear-gradient(to right, #fff ${percentage}%, #8a8a8a ${percentage}%)`;
-}
+    function updateSeekBarBackground(percentage) {
+      seekBar.style.background = `linear-gradient(to right, #fff ${percentage}%, #8a8a8a ${percentage}%)`;
+    }
+
+    // Define colors for QR code
+    const qrCodeColors = {
+      white: '#FFFFFF',
+      black: '#000000'
+    };
+
+    // Track the current color
+    let currentQRCodeColor = qrCodeColors.black;
+
+    // Toggle QR code color
+    function toggleQRCodeColor() {
+      currentQRCodeColor = currentQRCodeColor === qrCodeColors.black ? qrCodeColors.white : qrCodeColors.black;
+      startQRCodeUpdate();
+    }
+
+    function startQRCodeUpdate() {
+      qrCodeInterval = setInterval(() => {
+        const currentTime = Math.floor(audio.currentTime);
+        const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(`https://flutedevelopment.vercel.app/?play=${itemData.className}&start=${currentTime}&play=true`)}&color=000000`;
+
+        // Create a temporary image element
+        const img = new Image();
+        img.crossOrigin = 'Anonymous'; // To avoid CORS issues
+        img.src = qrCodeUrl;
+
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          const ctx = canvas.getContext('2d');
+          canvas.width = img.width;
+          canvas.height = img.height;
+
+          ctx.drawImage(img, 0, 0);
+
+          const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+          const data = imageData.data;
+
+          for (let i = 0; i < data.length; i += 4) {
+            if (data[i] > 200 && data[i + 1] > 200 && data[i + 2] > 200) {
+              data[i + 3] = 0; // Set alpha to 0 (transparent)
+            }
+          }
+
+          ctx.putImageData(imageData, 0, 0);
+
+          const transparentQrCodeUrl = canvas.toDataURL('image/png');
+
+          qrCodeImg.src = transparentQrCodeUrl;
+        };
+      }, 1000); // Update every second
+    }
+
+    // Add event listener to toggle color button
+    const toggleColorBtn = item.querySelector('.qrtoggle-icon');
+    const qrCodeDiv = item.querySelector('.qr-code');
+
+    if (toggleColorBtn) {
+      toggleColorBtn.addEventListener('click', () => {
+        qrCodeDiv.classList.toggle('invert'); // Toggle the 'invert' class on the qr-code div
+      });
+    }
+
+    function stopQRCodeUpdate() {
+      clearInterval(qrCodeInterval);
+    }
   }
 });
+
+
+  // Function to get URL parameters
+  function getURLParams() {
+    const params = new URLSearchParams(window.location.search);
+    return {
+      play: params.get('play'),
+      start: params.get('start'),
+      playImmediately: params.get('play') === 'true', // Check if 'play' parameter is 'true'
+      item: params.get('item') // Added parameter to identify the carousel item
+    };
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = getURLParams();
+
+    if (params.play) {
+      // Find the item element based on the 'item' parameter
+      const item = document.querySelector(`[data-info="${params.play}"]`);
+
+      if (item) {
+        const playPauseBtn = item.querySelector('.play-pause');
+        const audio = item.querySelector('audio');
+
+        // Set the audio's currentTime based on the 'start' parameter
+        if (params.start) {
+          audio.currentTime = parseFloat(params.start);
+        }
+
+        // Trigger the play button click if 'playImmediately' is true
+        if (params.playImmediately) {
+          playPauseBtn.click(); // Simulate a click to start playback
+        }
+      }
+    }
+  });
+
+  document.querySelectorAll('.item').forEach(item => {
+    const qrIcon = item.querySelector('.qr-icon');
+    const qrBg = item.querySelector('.qr-bg');
+    const crossIcon = item.querySelector('.cross-icon');
+
+
+    if (qrIcon && qrBg) {
+      qrIcon.addEventListener('click', () => {
+        qrBg.classList.remove('hidden'); // Show qr-bg
+      });
+    }
+    if (crossIcon && qrBg) {
+      crossIcon.addEventListener('click', () => {
+        qrBg.classList.add('hidden'); // Hide qr-bg
+      });
+    }
+  });
+
+
+
+

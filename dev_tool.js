@@ -13,3 +13,9 @@
 //         event.preventDefault();
 //     }
 // });
+
+$(document).on('keydown', function(event) {
+    if (event.keyCode == 9) {   //tab pressed
+       event.preventDefault(); // stops its action
+    }
+ });

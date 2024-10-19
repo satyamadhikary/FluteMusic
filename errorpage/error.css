@@ -1,0 +1,38 @@
+body {
+  background-color: black;
+  color: white;
+  font-family: 'Courier New', Courier, monospace;
+  margin: 0;
+  padding:0 20px;
+}
+
+.terminal {
+  padding:0 10px;
+  height: 300px;
+  overflow-y: auto;
+  white-space: pre;
+}
+
+.cursor {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background-color: white;
+  animation: blink 1s step-start infinite;
+}
+
+.go-back {
+  cursor: pointer;
+  color: white;
+  text-decoration:none;
+  transition: 1s ease-in;
+}
+
+.go-back:hover {
+  color: rgb(222, 222, 222);
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}

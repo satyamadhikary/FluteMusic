@@ -49,7 +49,7 @@ body::-webkit-scrollbar-track {
 
 body::-webkit-scrollbar-thumb {
   background: var(--sb-thumb-color);
-  border-radius: 0  px;
+  border-radius: 0px;
   
 }
 
@@ -89,6 +89,10 @@ body {
   -ms-overflow-style: -ms-autohiding-scrollbar; /* Auto-hiding scrollbars */
 }
 
+::-webkit-scrollbar {
+  display: none; /*Safari and Chrome */
+}
+
 
 
 /* SideNav*/
@@ -119,6 +123,10 @@ body {
 .sidenav a:hover{
   color: #b3b3b3;
 }
+.sidenav-wrapper{
+  padding-top: .25rem;
+  padding-left: 5px;
+}
 
 
 /*MainNAv*/
@@ -138,12 +146,12 @@ body {
   position: sticky;
   top: 0;
   width: -moz-available;
-  z-index: 999;
+  z-index: 9999;
   width: -webkit-fill-available;
 }
 
 .nav-bar h1{
-  display: none;
+  display: none;  
 }
 
 .nav-bar a{
@@ -158,23 +166,32 @@ body {
 /* Main*/
 
 .section-label{
+  display: flex;
+  justify-content: space-between;
   font-size: 25px;
   font-weight: 600;
   font-family: 'Roboto', sans-serif;
-  margin: 10px 0px 10px 20px;
+  margin: 10px 10px 10px 20px;
   color: #fff;
   cursor: pointer;
-  width: max-content;
+  width:initial;
 }
-
+.view-more{
+  margin:auto 0 0; 
+  text-decoration: none;
+}
+.section-label:hover .view-more{
+  text-decoration: underline;
+  text-shadow: 0px 0px 10px rgba(255, 255, 255, 1);
+}
 .wrapper{
   height: 100vh;
   width: -webkit-fill-available;
   overflow-y: scroll;
   position: relative;
-  top: .5%;
+  top: 0%;
   bottom: 0;
-  border-radius: 14px 14px 13px 13px / 25px 25px 25px 25px;
+  border-radius: 13px 13px 13px 13px / 25px 25px 25px 25px;
 }
 
 /*-----------------CAROUSEL_CSS_START------------------*/
@@ -220,11 +237,12 @@ body {
   height: 1000vh;
 }
 
+/* Controls Css*/
+
 .controls:hover .seek-bar::-webkit-slider-thumb {
   display: block;
   transition: 1.5s all ease-in-out;
 }
-
 
 .controls {
   position: absolute;
@@ -262,23 +280,104 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 10;
 }
 .play-pause:hover{
-  background-color: black;
-  
+  background-color: black; 
 }
 .play-pause.play::before {
   content: '\F4F4'; /* Font Awesome play icon */
   font-family: "bootstrap-icons";
   font-weight: 600;
-  width: 35px;
+  width: 27px;
 }
 .play-pause.pause::before {
-  content: '\F4C4'; /* Font Awesome pause icon */
+  content: '\F4C4'; 
   font-family: "bootstrap-icons";
   font-weight: 900;
-  width: 35px;
+  width: 27px;
 }   
+
+.qr-icon {
+  color: white;
+  padding: 10px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  width: 35px;
+  height: 35px;
+  margin-right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  font-weight: 100;
+}
+.qr-icon:hover{
+  background-color: black;
+}
+.cross-icon {
+  color: white;
+  padding: 10px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+  z-index: 10;
+  float: right;
+}
+.qrtoggle-icon {
+  color: white;
+  padding: 10px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+  z-index: 10;
+  float: right;
+  display: flex;
+  justify-content: flex-end;
+}
+.qrtoggle-icon::before{
+  content: '\F4B0';
+  font-family: "bootstrap-icons";
+}
+.cross-icon::before{
+  content: '\F659';
+  font-family: "bootstrap-icons";
+}
+.qr-icon::before{
+  content: '\F6AD'; 
+  font-family: "bootstrap-icons";
+}
+.qr-bg {
+  position: absolute;
+  z-index: 11;
+  height: inherit;
+  width: -webkit-fill-available;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  margin-right: 5px;
+}
+.hidden{
+  display: none;
+}
+.qr-code{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50% , -50%);
+}
+.qr-code img {
+  transition: filter 0.5s ease; /* Smooth transition */
+}
+
+.qr-code.invert img {
+  filter: invert(1); /* Inverts colors: black becomes white, and white becomes black */
+}
+
 /* Container to align the seek bar properly */
 .seek-bar-container {
   width: 100%;
@@ -330,4 +429,71 @@ body {
 /* Hover effect for the thumb */
 .seek-bar:hover {
   background: white; /* Lighten the track on hover */
+}
+
+
+
+/* Albums container*/
+
+.albums-container{
+  width: 270px;
+  height: 280px;
+  display: flex; 
+  flex-direction: column;
+  cursor: pointer;
+}
+.img-height{
+  position: relative;
+}
+.albums-container img{
+  border-radius: 10px;
+  object-fit: cover;
+  position: relative;
+  z-index: 1;
+}
+.albums-container h4{
+  color: white;
+  font-size: 30px;
+  margin-top: -50px;
+  margin-left: 10px;
+  position: relative;
+  z-index: 9;
+}
+
+.hover-control{
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  justify-content: space-around;
+  align-items: center;
+  display: none;
+}
+
+.albums-container:hover .hover-control{
+  display: flex ;
+  z-index: 11;
+}
+
+.albums-container:hover .img-height {
+  box-shadow: rgb(141, 141, 141) 0px 0px 20px, rgb(141, 141, 141) 0px 0px 0px;
+  transition: .4s ease-in-out;
+}
+.albums-container:hover .text{
+  font-size: 35px;
+  transition: .4s ease-in-out;
+  letter-spacing: 1px;
+}
+
+.new-play{
+  font-size: 30px;
+  width: 50px;
+  height: 50px;
+  margin-right: -10px;
+  background-color: #000;
+}
+.new-play:hover{
+  background-color: white;
+  color: #000;
+  transition: .4s ease-in-out;
 }

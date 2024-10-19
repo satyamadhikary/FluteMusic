@@ -1,7 +1,11 @@
 @media screen and (max-width: 767px) {
     .wrapper {
         top: 0%;
-        border-radius:0;
+        border-radius: 0;
+        padding: 0 !important;
+    }
+    .lock{
+        padding-top: .25rem;
     }
     .sidenav {
         width: 100%;
@@ -11,15 +15,24 @@
         border-radius: 0;
         flex-direction: unset;
         justify-content: space-evenly;
+        display: none;
     }
     .pad{
         padding: 0 !important;
     }
     .pad-content{
         padding: 10px;
+        padding-bottom: 0;
+    }
+    .content-wrap{
+        margin-top: .5rem;
+        padding: 0 0.625rem !important;
     }
     main{
         padding: 0;
+    }
+    .section-label {
+        margin: 10px 0px 10px 0px;
     }
     .nav-bar{
         border-radius: 0px;
@@ -43,6 +56,9 @@
     .controls{
         opacity: 1;
     }
+    .qr-bg{
+        margin-right: 10px;
+    } 
 }
 
 @media screen and (max-width: 1400px) {
@@ -50,18 +66,32 @@
         height: 7vh;   
     }
     .wrapper {
-        top: .7%;
-        border-radius:0;
+        top: 0%;
     }
     .img-container{
         height: 400px;
         display: flex;
+    }
+    @media only screen and (max-width:991px){
+        .lock{
+            padding-top: .25rem;
+        }
     }
 }
 
 @media only screen and (max-width:767px){
     .wrapper {
         top: 0%;
+        padding-top: 0;
+    }
+    .sidenav-wrapper{
+        padding-top: 0px;
+    }
+    .content-wrap{
+        padding: 0 0.625rem;
+    }
+    .lock{
+        padding-top: 0rem;
     }
 
 @media screen and (max-width: 576px){
@@ -75,10 +105,30 @@
         padding: 0 20px;
         opacity: 1;
     }
+    .qr-bg{
+        margin-right: 10px;
+    } 
+    .content-wrap{
+        padding: 0 0.625rem;
+    }
+    .lock{
+        padding-top: 0rem;
+    }
 }
 @media screen and (max-width: 375px){
     .controls {
         padding-left: 10px;
-      }
+    }
+     .qr-bg{
+        margin-right: 10px;
+    }   
+    .qr-bg {
+        width: 356px;
+    }
+}
+@media screen and (max-width: 320px){
+    .qr-bg {
+        width: 300px;
+    }
 }
 }

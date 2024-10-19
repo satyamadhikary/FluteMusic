@@ -1,6 +1,10 @@
 .pad{
-    padding: 5px;
+    padding: 5px .5rem;
+    position: relative;
+    z-index: 999;
 }
 .pad-content{
-    padding: 5px;
+    padding: 5px .5rem;
+    position: relative;
+    z-index: 999;
 }

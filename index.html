@@ -10,10 +10,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital@1&family=Dancing+Script:wght@400;600&family=IBM+Plex+Serif:ital@1&family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <!-- CUSTOM CSS -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="global.css">
     <link rel="stylesheet" href="responsive.css">
+    <link rel="stylesheet" href="/album/album.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- BOOTSTRAP ICONS -->
@@ -23,6 +28,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+ 
   </head>
   <body>
     <main id="main" scroll="no" style="overflow: hidden; height:100vh; padding-bottom:0;">
@@ -31,8 +37,8 @@
           <div class="container-fluid">
             <div class="row">
               
-            <div class="col-xxl-2 col-lg-2 col-md-2  p-0">
-            <div class="pad pt-1">               
+            <div class="col-xxl-2 col-lg-2 col-md-2 p-0">
+            <div class="sidenav-wrapper">               
                 <div class="sidenav">
                     <h1>Flute</h1>
                     <a href="#about">About</a>
@@ -44,8 +50,8 @@
             </div>
 
             
-            <div class="col-xxl-10 col-lg-10 col-md-10 p-0">
-              <div class="wrapper">
+            <div class="col-xxl-10 col-lg-10 col-md-10 p-0 pt-lg-1">
+              <div class="wrapper" id="none">
               <div class="lock">
                 <div class="pad pt-0">              
                 <div class="nav-bar">
@@ -60,14 +66,17 @@
                        
     
 
-            <!-------------------------------------------MAIN CONTENT-------------------------------------->
+            <!-- -----------------------------------------MAIN CONTENT------------------------------------ -->
 
-            <!---------------------------CAROUSEL_CONTENT_START-------------------------->
+            <!-- -------------------------CAROUSEL_CONTENT_START------------------------>
             <div class="pad-content">
-            <h2 class="section-label" href="down">Popular Songs</h2>
+              <div class="section-label"  id="hide">
+            <h2 href="down">Popular Songs</h2>
+            <h6 class="view-more">Show all</h6>
+          </div>
             </div>
    
-            <div class="owl-carousel owl-theme owl-stage" id="carousel">
+            <div class="owl-carousel banner owl-theme owl-stage" id="carousel" style="overflow: hidden;">
               
               <div class="item" data-info="item1"></div>
 
@@ -77,147 +86,106 @@
 
               <div class="item" data-info="item4"></div>      
               
-            </div>
-   
+            </div> 
+    
 
  <!---------------------------CAROUSEL_CONTENT_END-------------------------->
 
+            <div>
+            <div class="pad-content">
+              <h2 class="section-label">Popular Albums</h2>
+            </div>
+            <div class="pad-content">
+              <div class="owl-carousel albums owl-theme owl-stage "  id="carousel">
+                
+                <div class="item d-flex justify-content-center mt-3">
+                  <a href="errorpage.html" style="text-decoration: none;">
+                <div class="albums-container">
+                  <div class="img-height">
+                    <img src="https://firebasestorage.googleapis.com/v0/b/flute-8592b.appspot.com/o/Album%20Images%2FPrithibi.jpeg?alt=media&token=0e528b67-ecf6-4052-9b81-72fb959499d9" alt="Prithibi" class="img-fluid">
+                    <div class="hover-control">  
+                      <button class="play-pause play new-play"></button>
+                    </div>
+                  </div>
+                    <h4 class="text">Prithibi</h4>
+                </div>
+              </a>
+              </div>
 
-<div class="pad-content">
-    <div class="accordion" id="accordionExample">
-      <div class="accordion-item">
-        <h2 class="accordion-header">
-          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-            Accordion Item #1
-          </button>
-        </h2>
-        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-          <div class="accordion-body">
-            <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+              <div class="item d-flex justify-content-center mt-3">
+                <a href="errorpage.html" style="text-decoration: none;">
+                <div class="albums-container">
+                  <div class="img-height">
+                    <img src="https://firebasestorage.googleapis.com/v0/b/flute-8592b.appspot.com/o/Album%20Images%2FPrithibi.jpeg?alt=media&token=0e528b67-ecf6-4052-9b81-72fb959499d9" alt="Prithibi" class="img-fluid">
+                    <div class="hover-control">  
+                      <button class="play-pause play new-play"></button>
+                    </div>
+                  </div>
+                    <h4 class="text">Fossils</h4>
+                </div>
+              </a>
+              </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-            Accordion Item #2
-          </button>
-        </h2>
-        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-          <div class="accordion-body">
-            <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-          </div>
-        </div>
-      </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-            Accordion Item #3
-          </button>
-        </h2>
-        <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-          <div class="accordion-body">
-            <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-          </div>
-        </div>
-      </div>
-    </div>
+        
+        
+           
+        <div class="content-wrap" id="block">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-12 mt-md-1 mt-lg-0 p-0">
+                <div class="container-wrapper">
+                  <div class="back-icon" id="show"></div>
+                  <h3 class="album-header">
+                    Popular Songs
+                  </h3>
+                  <div class="scroller-wrapper pb-2">
+                    <ul id="album-list">
+                      <div class="list-item" data-info="album1"></div>
+                      
+                      <div class="list-item" data-info="album2"></div>
 
+                      <div class="list-item" data-info="album3"></div>
 
+                      <div class="list-item" data-info="album4"></div>
 
+                      <div class="list-item" data-info="album5"></div>
+                    </ul>
+                  </div>
+                </div>
+              </div>
 
-    <div class="accordion" id="accordionExample">
-      <div class="accordion-item">
-        <h2 class="accordion-header">
-          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-            Accordion Item #1
-          </button>
-        </h2>
-        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-          <div class="accordion-body">
-            <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+              <div class="col-12 mt-2 p-0">
+                <div class="song-footer">
+                  
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-            Accordion Item #2
-          </button>
-        </h2>
-        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-          <div class="accordion-body">
-            <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-          </div>
-        </div>
-      </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-            Accordion Item #3
-          </button>
-        </h2>
-        <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-          <div class="accordion-body">
-            <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-          </div>
-        </div>
-      </div>
-    </div>
 
 
 
-    <div class="accordion" id="accordionExample">
-      <div class="accordion-item">
-        <h2 class="accordion-header">
-          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-            Accordion Item #1
-          </button>
-        </h2>
-        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-          <div class="accordion-body">
-            <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-          </div>
-        </div>
-      </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-            Accordion Item #2
-          </button>
-        </h2>
-        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-          <div class="accordion-body">
-            <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-          </div>
-        </div>
-      </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-            Accordion Item #3
-          </button>
-        </h2>
-        <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-          <div class="accordion-body">
-            <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-          </div>
-        </div>
-      </div>
-    </div>
 
-  </div>
+
 
 
 
           
-</div>
     </div>
   </div>
 </section>
+
     <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>  
+    <!-- Jquery -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> -->
     <!--CUSTOM JAVASCRIPT -->
+    <script src="/BannerSongs/array.js"></script>
+    <script src="owl.js"></script>
+    <script src="/album/album.js"></script>
     <script src="script.js"></script>
     <script src="dev_tool.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
