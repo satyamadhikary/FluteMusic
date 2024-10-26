@@ -82,14 +82,46 @@ document.querySelectorAll('.item').forEach(item => {
     // Play/Pause button event listener
     playPauseBtn.addEventListener('click', togglePlayPause);
 
+    
     // Reset the button and audio when it ends
-    audio.addEventListener('ended', () => {
-      playPauseBtn.classList.remove('pause');
-      playPauseBtn.classList.add('play');
-      currentAudio = null;
-      currentPlayPauseBtn = null;
-      stopQRCodeUpdate();
-    });
+audio.addEventListener('ended', () => {
+  playPauseBtn.classList.remove('pause');
+  playPauseBtn.classList.add('play');
+  currentAudio = null;
+  currentPlayPauseBtn = null;
+  stopQRCodeUpdate();
+
+  // Slide to the next audio
+  owl.trigger('next.owl.carousel');
+
+  // After sliding, check if there's a next audio to play
+  const nextIndex = getNextIndex(item); 
+  function getNextIndex(currentItem) {
+    const itemsArray = Array.from(document.querySelectorAll('.item'));
+    const currentIndex = itemsArray.indexOf(currentItem);
+    const nextIndex = (currentIndex + 1) % itemsArray.length; // Wrap around to the first item
+    return nextIndex; // Return next index, or -1 if out of bounds
+  }
+  
+  // Define this function to get the next index
+  if (nextIndex !== -1) {
+    const nextItem = document.querySelectorAll('.item')[nextIndex];
+    const nextAudio = nextItem.querySelector('audio');
+    const nextPlayPauseBtn = nextItem.querySelector('.play-pause');
+
+    // Play the next audio automatically
+    if (nextAudio) {
+      nextAudio.play();
+      nextPlayPauseBtn.classList.remove('play');
+      nextPlayPauseBtn.classList.add('pause');
+      currentAudio = nextAudio;
+      currentPlayPauseBtn = nextPlayPauseBtn;
+      startQRCodeUpdate(); // Start updating QR code for the next audio
+    }
+  }
+});
+  
+
 
     // Update seekBar value and background color as audio plays
     audio.addEventListener('timeupdate', () => {

@@ -93,8 +93,9 @@
     .lock{
         padding-top: 0rem;
     }
+}
 
-@media screen and (max-width: 576px){
+@media screen and (max-width: 575px){
      .img-container h2{
         font-size: 60px;
     }
@@ -114,7 +115,12 @@
     .lock{
         padding-top: 0rem;
     }
+    .splash-title p{
+        font-size: 100px !important;
+        letter-spacing: 10px !important;
+    }
 }
+
 @media screen and (max-width: 375px){
     .controls {
         padding-left: 10px;
@@ -125,10 +131,13 @@
     .qr-bg {
         width: 356px;
     }
+    .splash-title p{
+        font-size: 80px;
+        letter-spacing: 10px;
+    }
 }
 @media screen and (max-width: 320px){
     .qr-bg {
         width: 300px;
     }
-}
 }
