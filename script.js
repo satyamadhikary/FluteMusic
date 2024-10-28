@@ -159,7 +159,7 @@ audio.addEventListener('ended', () => {
     function startQRCodeUpdate() {
       qrCodeInterval = setInterval(() => {
         const currentTime = Math.floor(audio.currentTime);
-        const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(`https://flutedevelopment.vercel.app/?play=${itemData.className}&start=${currentTime}&play=true`)}&color=000000`;
+        const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(`https://flutemusic.vercel.app/?play=${itemData.className}&start=${currentTime}&play=true`)}&color=000000`;
 
         // Create a temporary image element
         const img = new Image();
